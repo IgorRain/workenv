@@ -1,0 +1,27 @@
+{
+  "features": {
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "configureZshAsDefaultShell": true,
+      "installOhMyZsh": false
+    },
+    "ghcr.io/meaningful-ooo/devcontainer-features/homebrew:2": {},
+    "ghcr.io/devcontainers/features/python:1": {
+      "toolsToInstall": "virtualenv"
+    }
+  },
+  "mounts": [
+    "source=${localEnv:HOME}/dotfiles/.zshrc,target=/home/vscode/.zshrc,type=bind,consistency=cached",
+    "source=${localEnv:HOME}/dotfiles/starship.toml,target=/home/vscode/.config/starship.toml,type=bind,consistency=cached",
+    "source=${localEnv:HOME}/dotfiles/tmux.conf,target=/home/vscode/.tmux.conf,type=bind,consistency=cached",
+    "source=${localEnv:HOME}/dotfiles/lazygit,target=/home/vscode/.config/lazygit,type=bind,consistency=cached",
+    "source=${localEnv:HOME}/dotfiles/atuin,target=/home/vscode/.config/atuin,type=bind,consistency=cached",
+    "source=${localEnv:HOME}/.config/nvim,target=/home/vscode/.config/nvim,type=bind,consistency=cached",
+    "source=${localEnv:TERMINFO},target=/home/vscode/.terminfo,type=bind,consistency=cached,readonly",
+    "source=/etc/localtime,target=/etc/localtime,type=bind,consistency=cached,readonly"
+  ],
+  "containerEnv": {
+    "LANG": "en_US.UTF-8",
+    "LC_CTYPE": "en_US.UTF-8"
+  },
+  "postCreateCommand": "~/setup.sh"
+}
