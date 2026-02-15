@@ -42,7 +42,7 @@ if [ ! -f "$FILE_PATH" ]; then
     exit 1
 fi
 
-jq ".mounts += [\"source=$RESOURCE_DIR/setup.sh,target=/home/vscode/setup.sh,type=bind,consistency=cached\"]" $RESOURCE_DIR/addition.json > $PATCH_FILE
+jq ".mounts += [\"source=$RESOURCE_DIR/setup.sh,target=/home/vscode/setup.sh,type=bind,consistency=cached\", \"source=$RESOURCE_DIR/Brewfile,target=/home/vscode/.Brewfile,type=bind,consistency=cached\"]" $RESOURCE_DIR/addition.json > $PATCH_FILE
 
 jq -s '.[0] * .[1]' $FILE_PATH $PATCH_FILE > $FILE_PATH.tmp
 if [[ $(uname) == "Darwin" ]]; then 
