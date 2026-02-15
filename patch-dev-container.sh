@@ -45,10 +45,5 @@ fi
 jq ".mounts += [\"source=$RESOURCE_DIR/setup.sh,target=/home/vscode/setup.sh,type=bind,consistency=cached\", \"source=$RESOURCE_DIR/Brewfile,target=/home/vscode/.Brewfile,type=bind,consistency=cached\"]" $RESOURCE_DIR/addition.json > $PATCH_FILE
 
 jq -s '.[0] * .[1]' $FILE_PATH $PATCH_FILE > $FILE_PATH.tmp
-if [[ $(uname) == "Darwin" ]]; then 
-    MAC_TMP_FILE=$TMP_FILE.macos
-    jq '.runArgs += ["--platform linux/amd64"]' $TMP_FILE > $MAC_TMP_FILE
-    mv $MAC_TMP_FILE $TMP_FILE
-fi
 rm $PATCH_FILE
 mv $TMP_FILE $FILE_PATH
